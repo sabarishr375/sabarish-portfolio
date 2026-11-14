@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<!--
+  ============================================================
+  PORTFOLIO TEMPLATE  |  Sabaris H R
+  ============================================================
+  HOW TO EDIT (full guide: HOW_TO_EDIT_PORTFOLIO.docx)
+  1. Open this file in VS Code or Notepad.
+  2. Search for "EDIT:" to jump to every place you may want to change.
+  3. Change only the text between the > and < of each tag.
+  4. Save, then refresh index.html in your browser.
+  ============================================================
+-->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- EDIT: browser tab title and search-result description -->
+  <title>Sabarish R, Software Developer</title>
+  <meta name="description" content="Portfolio of Sabarish R, a software developer working with Java, Python, JavaScript, React.js and Salesforce.">
+
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%235b8cff'/%3E%3Cstop offset='1' stop-color='%2322d3ee'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='14' fill='url(%23g)'/%3E%3Ctext x='32' y='43' font-size='34' font-family='Arial' font-weight='700' text-anchor='middle' fill='%2306101f'%3ES%3C/text%3E%3C/svg%3E">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <script>
+    /* Applies the saved theme before the page paints, so it does not flash. */
+    document.documentElement.classList.add('js');
+    try { if (localStorage.getItem('theme') === 'light') document.documentElement.dataset.theme = 'light'; } catch (e) {}
+  </script>
+
+  <style>
+    /* ------------------------------------------------------------
+       EDIT: COLORS AND FONTS
+       The first block is the dark theme (the default).
+       The second block is the light theme, used when a visitor
+       presses the sun/moon button in the top bar.
+       ------------------------------------------------------------ */
+    :root {
+      --bg: #0B0D12;        /* page background */
+      --bg2: #11141B;       /* alternate section background */
+      --card: #151923;      /* cards and panels */
+      --line: #232836;      /* thin borders */
+      --text: #E9ECF2;      /* main text */
+      --muted: #9AA3B5;     /* secondary text */
+      --accent: #5B8CFF;    /* main highlight colour (blue) */
+      --accent2: #22D3EE;   /* second highlight colour (cyan) */
+      --on-accent: #06101F; /* text on gradient buttons */
+      --grad: linear-gradient(135deg, var(--accent) 0%, var(--accent2) 100%);
+      --shadow: 0 10px 40px rgba(0, 0, 0, .35);
+
+      --font-body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+      --font-mono: "JetBrains Mono", ui-monospace, Consolas, monospace;
+    }
+
+    :root[data-theme="light"] {
+      --bg: #F7F8FB;
+      --bg2: #EEF1F6;
+      --card: #FFFFFF;
+      --line: #E3E7EF;
+      --text: #121622;
+      --muted: #596176;
+      --accent: #2F5FE0;
+      --accent2: #0891B2;
+      --on-accent: #FFFFFF;
+      --shadow: 0 10px 30px rgba(20, 30, 60, .08);
+    }
+
+    /* ------------------------------------------------------------
+       Base
+       ------------------------------------------------------------ */
+    *, *::before, *::after { box-sizing: border-box; }
+    * { margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; scroll-padding-top: 72px; }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+      transition: background .3s, color .3s;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    ul { list-style: none; }
+    ::selection { background: var(--accent); color: var(--on-accent); }
+
+    a:focus-visible, button:focus-visible {
+      outline: 3px solid var(--accent2);
+      outline-offset: 3px;
+      border-radius: 8px;
+    }
+
+    .wrap { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+    .mono { font-family: var(--font-mono); }
+
+    /* ------------------------------------------------------------
+       Top navigation
+       ------------------------------------------------------------ */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      background: color-mix(in srgb, var(--bg) 78%, transparent);
+      border-bottom: 1px solid var(--line);
+    }
+    nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+
+    .logo { font-weight: 800; font-size: 1.15rem; letter-spacing: -.02em; }
+    .logo span { background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+
+    .nav-links { display: flex; gap: 22px; align-items: center; }
+    .nav-links a { color: var(--muted); font-size: .9rem; font-weight: 500; transition: color .2s; }
+    .nav-links a:hover { color: var(--text); }
+
+    .toggle {
+      background: var(--card);
+      border: 1px solid var(--line);
+      color: var(--text);
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+
+    /* ------------------------------------------------------------
+       Hero
+       ------------------------------------------------------------ */
+    .hero { position: relative; padding: 110px 0 90px; overflow: hidden; }
+    .blob { position: absolute; border-radius: 50%; filter: blur(90px); opacity: .35; z-index: -1; }
+    .b1 { width: 420px; height: 420px; background: var(--accent); top: -60px; right: -80px; }
+    .b2 { width: 320px; height: 320px; background: var(--accent2); bottom: -40px; left: -100px; opacity: .2; }
+    :root[data-theme="light"] .blob { opacity: .2; }
+    :root[data-theme="light"] .b2 { opacity: .14; }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px;
+      border: 1px solid var(--line);
+      border-radius: 99px;
+      background: var(--card);
+      font-size: .82rem;
+      color: var(--muted);
+    }
+    .dot { width: 8px; height: 8px; border-radius: 50%; background: #22C55E; box-shadow: 0 0 0 4px rgba(34, 197, 94, .18); }
+
+    h1 {
+      font-size: clamp(2.4rem, 6vw, 4.4rem);
+      line-height: 1.05;
+      letter-spacing: -.035em;
+      font-weight: 800;
+      margin: 22px 0 18px;
+    }
+    h1 .g { background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; padding-bottom: 4px; }
+
+    .lead { font-size: 1.15rem; color: var(--muted); max-width: 620px; }
+    .typed { color: var(--accent2); }
+
+    .cta { display: flex; gap: 14px; margin-top: 34px; flex-wrap: wrap; }
+    .btn {
+      padding: 13px 22px;
+      border-radius: 12px;
+      font-weight: 600;
+      font-size: .95rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: transform .2s, box-shadow .2s;
+    }
+    .btn.primary { background: var(--grad); color: var(--on-accent); box-shadow: 0 8px 24px color-mix(in srgb, var(--accent) 35%, transparent); }
+    .btn.ghost { border: 1px solid var(--line); background: var(--card); }
+    .btn:hover { transform: translateY(-2px); }
+
+    .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 64px; max-width: 620px; }
+    .stat { padding: 18px; border: 1px solid var(--line); border-radius: 14px; background: var(--card); }
+    .stat b { font-size: 1.7rem; display: block; letter-spacing: -.02em; line-height: 1.2; }
+    .stat small { color: var(--muted); font-size: .82rem; }
+
+    /* ------------------------------------------------------------
+       Sections and headings
+       ------------------------------------------------------------ */
+    section { padding: 90px 0; }
+    .alt { background: var(--bg2); }
+
+    h2 { font-size: clamp(1.8rem, 4vw, 2.3rem); font-weight: 800; letter-spacing: -.03em; line-height: 1.15; margin-bottom: 40px; }
+    h2::after {
+      content: "";
+      display: block;
+      width: 40px;
+      height: 3px;
+      margin-top: 14px;
+      border-radius: 3px;
+      background: var(--grad);
+    }
+
+    h3 { font-size: 1.08rem; font-weight: 600; line-height: 1.3; }
+
+    /* About */
+    .about { display: grid; grid-template-columns: 1.3fr 1fr; gap: 40px; align-items: start; }
+    .about p { color: var(--muted); font-size: 1.05rem; max-width: 62ch; }
+
+    .code {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 22px;
+      font-size: .85rem;
+      line-height: 1.7;
+      box-shadow: var(--shadow);
+      overflow-x: auto;
+    }
+    .code .k { color: #C084FC; }
+    .code .s { color: #34D399; }
+    .code .n { color: #FBBF24; }
+    .code .c { color: var(--muted); }
+    .code .f { color: #60A5FA; }
+    :root[data-theme="light"] .code .k { color: #7E22CE; }
+    :root[data-theme="light"] .code .s { color: #047857; }
+    :root[data-theme="light"] .code .n { color: #B45309; }
+    :root[data-theme="light"] .code .f { color: #1D4ED8; }
+
+    /* Cards */
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 24px;
+      transition: transform .25s, border-color .25s, box-shadow .25s;
+    }
+    .card:hover {
+      transform: translateY(-4px);
+      border-color: color-mix(in srgb, var(--accent) 50%, var(--line));
+      box-shadow: var(--shadow);
+    }
+    .card .sub { margin-top: 4px; color: var(--muted); font-size: .94rem; }
+
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px; }
+    .grid.single { grid-template-columns: minmax(0, 620px); }
+
+    /* Skills: three cards on the first row, two wider cards on the second */
+    .skills-grid { grid-template-columns: repeat(6, 1fr); }
+    .skills-grid .card { grid-column: span 2; }
+    .skills-grid .card:nth-child(n+4) { grid-column: span 3; }
+
+    .ic {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      background: color-mix(in srgb, var(--accent) 15%, transparent);
+      font-size: 1.3rem;
+      margin-bottom: 14px;
+    }
+    .card h3 + .tags { margin-top: 12px; }
+
+    .tags { display: flex; flex-wrap: wrap; gap: 8px; }
+    .tag {
+      font-size: .78rem;
+      padding: 4px 10px;
+      border-radius: 8px;
+      background: var(--bg2);
+      border: 1px solid var(--line);
+      color: var(--muted);
+    }
+    .alt .tag { background: var(--bg); }
+
+    /* Experience timeline */
+    .tl { position: relative; padding-left: 30px; }
+    .tl::before { content: ""; position: absolute; left: 7px; top: 6px; bottom: 6px; width: 2px; background: var(--line); }
+    .item { position: relative; margin-bottom: 38px; }
+    .item:last-child { margin-bottom: 0; }
+    .item::before {
+      content: "";
+      position: absolute;
+      left: -30px;
+      top: 6px;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: var(--grad);
+      box-shadow: 0 0 0 5px var(--bg);
+    }
+    .item .when { font-size: .8rem; color: var(--accent2); }
+    .item h3 { font-size: 1.2rem; margin: 2px 0; }
+    .item .org { color: var(--accent2); font-size: .94rem; font-weight: 500; margin-bottom: 12px; }
+    .pts { color: var(--muted); font-size: .96rem; display: grid; gap: 6px; }
+    .pts li { padding-left: 18px; position: relative; }
+    .pts li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: .75em;
+      width: 8px;
+      height: 2px;
+      background: var(--accent);
+    }
+    .item .pts { max-width: 68ch; }
+
+    /* Projects */
+    .projects { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+    .proj { display: flex; flex-direction: column; overflow: hidden; padding: 0; }
+    .thumb { height: 150px; display: grid; place-items: center; font-size: 2.8rem; }
+    .t1 { background: linear-gradient(135deg, #1E3A8A, #0E7490); }
+    .t2 { background: linear-gradient(135deg, #6D28D9, #DB2777); }
+    .proj .body { padding: 24px; display: flex; flex-direction: column; gap: 14px; flex: 1; }
+    .proj .pts { flex: 1; }
+    .proj-links { display: flex; gap: 20px; font-weight: 600; font-size: .94rem; color: var(--accent); }
+    .proj-links a:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+    /* Contact */
+    .contact {
+      text-align: center;
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      padding: 64px 24px;
+      background: radial-gradient(circle at top, color-mix(in srgb, var(--accent) 18%, transparent), transparent 60%), var(--card);
+    }
+    .contact h2::after { margin-left: auto; margin-right: auto; }
+    .contact p { color: var(--muted); max-width: 520px; margin: 0 auto 28px; }
+    .socials { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+
+    footer { padding: 30px 0; text-align: center; color: var(--muted); font-size: .85rem; border-top: 1px solid var(--line); }
+
+    /* Scroll reveal (only when JavaScript is on, so content never stays hidden) */
+    .js .reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s ease; }
+    .js .reveal.in { opacity: 1; transform: none; }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .js .reveal { opacity: 1; transform: none; transition: none; }
+      .btn, .card { transition: none; }
+    }
+
+    /* ------------------------------------------------------------
+       Tablet and phone
+       ------------------------------------------------------------ */
+    @media (max-width: 900px) {
+      .nav-links a { display: none; }
+      .about { grid-template-columns: 1fr; }
+      .skills-grid { grid-template-columns: repeat(2, 1fr); }
+      .skills-grid .card, .skills-grid .card:nth-child(n+4) { grid-column: auto; }
+      .skills-grid .card:last-child { grid-column: 1 / -1; }
+    }
+
+    @media (max-width: 760px) {
+      .hero { padding: 70px 0 60px; }
+      section { padding: 64px 0; }
+      .wrap { padding: 0 16px; }
+      .stats { gap: 10px; margin-top: 48px; }
+      .stat { padding: 14px; }
+      .stat b { font-size: 1.3rem; }
+      .projects { grid-template-columns: minmax(0, 1fr); }
+    }
+
+    @media (max-width: 560px) {
+      .skills-grid { grid-template-columns: minmax(0, 1fr); }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ==========================================================
+       TOP BAR
+       ========================================================== -->
+  <nav>
+    <div class="wrap">
+      <!-- EDIT: logo text -->
+      <a href="#top" class="logo">Sabarish<span>.dev</span></a>
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#experience">Experience</a>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#education">Education</a>
+        <a href="#certifications">Certifications</a>
+        <a href="#achievements">Achievements</a>
+        <a href="#contact">Contact</a>
+        <button class="toggle" id="theme" type="button" aria-label="Switch between dark and light theme">☀️</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ==========================================================
+       HERO
+       ========================================================== -->
+  <header class="hero" id="top">
+    <div class="blob b1"></div><div class="blob b2"></div>
+    <div class="wrap">
+      <!-- EDIT: delete this whole line if you do not want the green badge -->
+      <span class="badge"><span class="dot"></span>Open to opportunities</span>
+
+      <!-- EDIT: your name and the second line of the big heading -->
+      <h1>Hi, I’m <span class="g">Sabarish R</span>.<br>I build reliable web applications.</h1>
+
+      <!-- EDIT: job title, the rotating words (separated by | ) and the closing phrase -->
+      <p class="lead">Software developer crafting
+        <span class="typed" id="typed" data-words="full-stack web apps|responsive interfaces|Salesforce CRM solutions|AI-assisted systems">full-stack web apps</span>
+        using Java, Python, JavaScript, React.js and Salesforce Apex.</p>
+
+      <div class="cta">
+        <a href="#projects" class="btn primary">View my work →</a>
+        <a href="#contact" class="btn ghost">Get in touch</a>
+        <!-- EDIT: keep the file name in sync if you rename your resume PDF -->
+        <a href="Sabarish_Resume.pdf" class="btn ghost" download>Download resume ↓</a>
+      </div>
+
+      <!-- EDIT: three quick facts. Change the number and the label. -->
+      <div class="stats">
+        <div class="stat"><b>2</b><small>Internships</small></div>
+        <div class="stat"><b>2</b><small>Projects</small></div>
+        <div class="stat"><b>3</b><small>Certifications</small></div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==========================================================
+       ABOUT
+       ========================================================== -->
+  <section id="about" class="alt">
+    <div class="wrap about reveal">
+      <div>
+        <h2>About</h2>
+        <!-- EDIT: your profile paragraph -->
+        <p>Software developer and B.E. Computer Science and Engineering graduate with hands-on exposure to full-stack and front-end development. Skilled in Java, Python, JavaScript, React.js, SQL and Salesforce Apex. Interested in building reliable applications, intuitive user interfaces and practical business solutions.</p>
+      </div>
+
+      <!-- EDIT: the code card. Change only the words inside the quotes. -->
+      <pre class="code mono"><span class="c">// whoami.js</span>
+<span class="k">const</span> <span class="f">developer</span> = {
+  name:      <span class="s">'Sabarish R'</span>,
+  role:      <span class="s">'Software Developer'</span>,
+  degree:    <span class="s">'B.E. Computer Science'</span>,
+  cgpa:      <span class="n">8.04</span>,
+  stack: [
+    <span class="s">'Java'</span>, <span class="s">'Python'</span>,
+    <span class="s">'JavaScript'</span>, <span class="s">'React.js'</span>,
+    <span class="s">'Apex'</span>
+  ]
+};</pre>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       EXPERIENCE
+       ========================================================== -->
+  <section id="experience">
+    <div class="wrap">
+      <h2>Experience</h2>
+      <div class="tl">
+
+        <!-- EDIT: to add a role, copy everything from <div class="item reveal"> to its closing </div> and paste it below -->
+        <div class="item reveal">
+          <!-- EDIT (optional): to show dates, add a line here, for example: <div class="when mono">Jun 2025 to Aug 2025</div> -->
+          <h3>Full-Stack Development Intern</h3>
+          <div class="org">Nurture Infotech Solutions, Erode</div>
+          <ul class="pts">
+            <li>Engineered backend services using Node.js and Express.js to support web application data flows.</li>
+            <li>Worked with MySQL and MongoDB queries to support efficient API performance.</li>
+            <li>Built modular React.js components to improve UI rendering and responsiveness.</li>
+            <li>Used Git for version control and participated in collaborative development workflows.</li>
+          </ul>
+        </div>
+
+        <div class="item reveal">
+          <h3>Front-End Development Intern</h3>
+          <div class="org">Durga Tech, Salem</div>
+          <ul class="pts">
+            <li>Developed and refined front-end interface components using HTML, CSS and JavaScript.</li>
+            <li>Implemented responsive page layouts and interactive UI elements for web applications.</li>
+            <li>Tested interface behavior and supported debugging of front-end integration issues.</li>
+            <li>Prepared application flow documentation and collaborated on development tasks.</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       PROJECTS
+       ========================================================== -->
+  <section id="projects" class="alt">
+    <div class="wrap">
+      <h2>Projects</h2>
+      <div class="projects">
+
+        <!-- EDIT: to add a project, copy everything from <article> to </article> and paste it below.
+             The emoji in the coloured banner can be any emoji. -->
+        <article class="card proj reveal">
+          <div class="thumb t1" aria-hidden="true">🌾</div>
+          <div class="body">
+            <h3>Intelligent Micro-Dosing Pesticide Spraying System</h3>
+            <ul class="pts">
+              <li>Designed an AI-assisted system to identify rice leaf diseases and support targeted pesticide application.</li>
+              <li>Integrated image classification with a precision-spraying workflow to reduce unnecessary pesticide use.</li>
+            </ul>
+            <div class="tags"><span class="tag">Python</span><span class="tag">YOLOv11</span><span class="tag">AI</span><span class="tag">IoT</span></div>
+            <!-- EDIT (optional): to show project links, delete the comment symbols at the start and
+                 end of the block below, and replace each # with your real address. -->
+            <!--
+            <p class="proj-links">
+              <a href="#" target="_blank" rel="noopener">Source code</a>
+              <a href="#" target="_blank" rel="noopener">Live demo</a>
+            </p>
+            -->
+          </div>
+        </article>
+
+        <article class="card proj reveal">
+          <div class="thumb t2" aria-hidden="true">☁️</div>
+          <div class="body">
+            <h3>Salesforce Customer Management CRM Dashboard</h3>
+            <ul class="pts">
+              <li>Built a functional CRM dashboard to organize customer information and support customer-management workflows.</li>
+              <li>Used Salesforce configuration and Apex in the CRM implementation.</li>
+            </ul>
+            <div class="tags"><span class="tag">Salesforce</span><span class="tag">Apex</span><span class="tag">CRM</span></div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       SKILLS
+       ========================================================== -->
+  <section id="skills">
+    <div class="wrap">
+      <h2>Skills</h2>
+      <!-- EDIT: each card is one skill group. Each tag is one skill: copy a <span> to add, delete one to remove. -->
+      <div class="grid skills-grid">
+        <div class="card reveal">
+          <div class="ic" aria-hidden="true">💻</div>
+          <h3>Languages</h3>
+          <div class="tags"><span class="tag">Java</span><span class="tag">Python</span><span class="tag">JavaScript</span><span class="tag">Apex</span><span class="tag">OOP</span></div>
+        </div>
+        <div class="card reveal">
+          <div class="ic" aria-hidden="true">⚙️</div>
+          <h3>Frameworks</h3>
+          <div class="tags"><span class="tag">Node.js</span><span class="tag">Express.js</span><span class="tag">Spring Boot</span><span class="tag">React.js</span></div>
+        </div>
+        <div class="card reveal">
+          <div class="ic" aria-hidden="true">🗄️</div>
+          <h3>Databases and cloud</h3>
+          <div class="tags"><span class="tag">MySQL</span><span class="tag">PostgreSQL</span><span class="tag">MongoDB</span><span class="tag">Salesforce</span></div>
+        </div>
+        <div class="card reveal">
+          <div class="ic" aria-hidden="true">🧩</div>
+          <h3>Engineering</h3>
+          <div class="tags"><span class="tag">DSA</span><span class="tag">REST APIs</span><span class="tag">UI development</span><span class="tag">CRM</span></div>
+        </div>
+        <div class="card reveal">
+          <div class="ic" aria-hidden="true">🛠️</div>
+          <h3>Tools</h3>
+          <div class="tags"><span class="tag">Git</span><span class="tag">GitHub</span><span class="tag">Postman</span><span class="tag">VS Code</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       EDUCATION
+       ========================================================== -->
+  <section id="education" class="alt">
+    <div class="wrap">
+      <h2>Education</h2>
+      <div class="grid single">
+        <div class="card reveal">
+          <div class="ic" aria-hidden="true">🎓</div>
+          <h3>B.E. Computer Science and Engineering</h3>
+          <p class="sub">K.S.R Institute for Engineering and Technology, Tiruchengode</p>
+          <p class="sub">2022 to 2026, CGPA 8.04</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       CERTIFICATIONS
+       ========================================================== -->
+  <section id="certifications">
+    <div class="wrap">
+      <h2>Certifications</h2>
+      <!-- EDIT: to add a certificate, copy one card and change the two lines of text -->
+      <div class="grid">
+        <div class="card reveal"><h3>Generative AI Course</h3><p class="sub">Google Cloud</p></div>
+        <div class="card reveal"><h3>Python and AI Bootcamp</h3><p class="sub">DevTown</p></div>
+        <div class="card reveal"><h3>JavaScript Certification</h3><p class="sub">DigiLabs</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       ACHIEVEMENTS
+       ========================================================== -->
+  <section id="achievements" class="alt">
+    <div class="wrap">
+      <h2>Honors and achievements</h2>
+      <div class="grid">
+        <div class="card reveal">
+          <h3>Hackathon participant</h3>
+          <p class="sub">Technical problem-solving and rapid prototype development, KPR Institute.</p>
+        </div>
+        <div class="card reveal">
+          <h3>UI/UX workshop</h3>
+          <p class="sub">User-centric product workflows and accessibility guidelines, Sengunthar Engineering College.</p>
+        </div>
+        <div class="card reveal">
+          <h3>Galaxy ’24</h3>
+          <p class="sub">Presented a PPT at a Government Engineering College, Erode, 2024.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       CONTACT
+       ========================================================== -->
+  <section id="contact">
+    <div class="wrap">
+      <div class="contact reveal">
+        <h2>Contact</h2>
+        <p>Feel free to get in touch through any of these.</p>
+        <!-- EDIT: your email, GitHub and LinkedIn links -->
+        <div class="socials">
+          <a class="btn primary" href="mailto:sabarishr375@gmail.com">Email me ✉️</a>
+          <a class="btn ghost" href="https://github.com/sabarishr375" target="_blank" rel="noopener">GitHub</a>
+          <a class="btn ghost" href="https://linkedin.com/in/sabarish-r-662644257" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <!-- EDIT: footer text (the year updates itself) -->
+    © <span id="year">2026</span> Sabarish R
+  </footer>
+
+  <script>
+    (function () {
+      var root = document.documentElement;
+      var btn = document.getElementById('theme');
+
+      /* Footer year */
+      document.getElementById('year').textContent = new Date().getFullYear();
+
+      /* Light / dark toggle, remembered between visits */
+      btn.textContent = root.dataset.theme === 'light' ? '🌙' : '☀️';
+      btn.addEventListener('click', function () {
+        var goLight = root.dataset.theme !== 'light';
+        root.dataset.theme = goLight ? 'light' : 'dark';
+        btn.textContent = goLight ? '🌙' : '☀️';
+        try { localStorage.setItem('theme', root.dataset.theme); } catch (e) {}
+      });
+
+      /* Rotating words in the hero */
+      var el = document.getElementById('typed');
+      var words = (el.getAttribute('data-words') || '').split('|').filter(Boolean);
+      var calm = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (words.length > 1 && !calm) {
+        var i = 0;
+        el.style.transition = 'opacity .25s';
+        setInterval(function () {
+          i = (i + 1) % words.length;
+          el.style.opacity = 0;
+          setTimeout(function () { el.textContent = words[i]; el.style.opacity = 1; }, 250);
+        }, 2600);
+      }
+
+      /* Reveal sections as they scroll into view */
+      var items = document.querySelectorAll('.reveal');
+      if ('IntersectionObserver' in window) {
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) {
+            if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+          });
+        }, { threshold: 0.12 });
+        items.forEach(function (n) { io.observe(n); });
+      } else {
+        items.forEach(function (n) { n.classList.add('in'); });
+      }
+    })();
+  </script>
+</body>
+</html>
